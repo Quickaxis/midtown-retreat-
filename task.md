@@ -2,21 +2,21 @@
 
 - [x] Planning and Analysis
     - [x] Update implementation plan for new requirements
-- [/] Mobile Navigation Overhaul
-    - [/] Remove hamburger menu and mobile styles
-    - [ ] Implement horizontal scrolling nav links in pill
-    - [ ] Style pill (fixed, glass, specific layout)
-- [ ] Room Card Refinement
-    - [ ] Update heights and image positioning
-    - [ ] Adjust mobile layout (stacked, full width)
-- [ ] Unified Image Lightbox
-    - [ ] Implement common Lightbox HTML/CSS/JS
-    - [ ] Apply to all relevant images sitewide
-    - [ ] Add navigation, ESC key, and body scroll lock
-- [ ] Global Image Styling
-    - [/] Force `object-position: center 30%` for all images
-    - [ ] Add exceptions for Gallery and About collage
-- [ ] Final Verification & Push
-    - [ ] Test across all 3 pages
-    - [ ] Update walkthrough
-    - [x] Push to GitHub (initial sync complete)
+- [x] Mobile Navigation Overhaul
+    - [x] Remove hamburger menu and mobile styles
+    - [x] Implement horizontal scrolling nav links in pill
+    - [x] Style pill (fixed, glass, specific layout)
+- [x] Room Card Refinement
+    - [x] Update heights and image positioning
+    - [x] Adjust mobile layout (stacked, full width)
+- [x] Unified Image Lightbox
+    - [x] Implement common Lightbox HTML/CSS/JS
+    - [x] Apply to all relevant images sitewide
+    - [x] Add navigation, ESC key, and body scroll lock
+- [x] Global Image Styling
+    - [x] Force `object-position: center 30%` for all images
+    - [x] Add exceptions for Gallery and About collage
+- [x] Final Verification & Push
+    - [x] Test across all 3 pages
+    - [x] Update walkthrough
+    - [x] Push to GitHub
