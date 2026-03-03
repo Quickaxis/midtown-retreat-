@@ -81,6 +81,10 @@
             border: none;
         }
 
+        ul {
+            list-style: none;
+        }
+
         img {
             max-width: 100%;
             height: auto;
@@ -148,16 +152,21 @@
         .nav-links a {
             font-size: 14px;
             font-weight: 500;
-            color: white;
+            color: #1a1a1a;
             opacity: 0.8;
             padding: 0 8px;
             white-space: nowrap;
         }
 
-        .nav-links a:hover,
+        .nav-links a:hover {
+            opacity: 1;
+            color: #0d4a47;
+        }
+
         .nav-links a.active {
             opacity: 1;
-            color: var(--accent);
+            color: #c9a84c;
+            font-weight: 700;
         }
 
         .btn-book {

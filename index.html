@@ -185,19 +185,24 @@
         .nav-links a {
             font-size: 14px;
             font-weight: 500;
-            color: white;
+            color: #1a1a1a;
             opacity: 0.8;
             padding: 0 8px;
             white-space: nowrap;
         }
 
-        .nav-links a:hover,
-        .nav-links a.active {
+        nav.on-hero .nav-links a {
+            color: white;
+        }
+
+        .nav-links a:hover {
             opacity: 1;
-            color: var(--accent);
+            color: #0d4a47;
         }
 
         .nav-links a.active {
+            opacity: 1;
+            color: #c9a84c;
             font-weight: 700;
         }
 
@@ -618,7 +623,7 @@
 </head>
 
 <body>
-    <nav id="navbar">
+    <nav id="navbar" class="on-hero">
         <div class="logo">
             <img src="images/logo-transparent.png" alt="Midtown Retreat Logo">
         </div>
@@ -773,7 +778,19 @@
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        // Hero Observer for Navbar Colors
+        const heroSection = document.querySelector('.hero');
+        const heroObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    nav.classList.add('on-hero');
+                } else {
+                    nav.classList.remove('on-hero');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        if (heroSection) heroObserver.observe(heroSection);
 
         // Unified Lightbox Logic
         const lightbox = document.createElement('div');

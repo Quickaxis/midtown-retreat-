@@ -1,34 +1,34 @@
-# Walkthrough - Navbar and Image Refinements
+# Walkthrough - Navbar Visibility & Dynamic Styling
 
-I have refined the Midtown Retreat website to improve mobile navigation and image presentation.
+I have fixed the visibility issues on the navbar and implemented dynamic styling for a better user experience across all pages.
 
 ## Changes Made
 
-### 1. Mobile Navigation Optimization
-- **Home Link**: Replaced "Discover" with "Home" for clearer navigation.
-- **Link Reordering**: Organized links as Home | Spaces | Rooms | Gallery | Contact.
-- **Space Management**:
-    - Reduced link font-size to 11px and padding to `0 8px` on mobile.
-    - Reduced logo height to 28px on mobile to give more breathing room.
-    - Implemented conditional hiding of "Gallery" and "Contact" labels on screens smaller than 400px to ensure the most critical links remain visible.
-- **Visuals**: Maintain the glassmorphism aesthetic with improved spacing.
+### 1. Unified Navbar Visibility
+- **Non-Hero Pages (`rooms.html`, `explore.html`)**: Set the default link color to `#1a1a1a` (dark) to ensure perfect contrast against the white/glass background.
+- **Dynamic Transition (`index.html`)**: 
+    - Implemented an `IntersectionObserver` that monitors the hero section.
+    - Links are **white** when overlapping the hero image.
+    - Links smoothly switch to **dark** (`#1a1a1a`) once the user scrolls past the hero section.
+- **Improved Hover/Active States**: Standardized across all pages:
+    - **Hover**: `#0d4a47` (Teal)
+    - **Active**: `#c9a84c` (Gold)
 
-### 2. Image Positioning & Focus
-- **Interior Priority**: Adjusted `object-position` across all major image types to ensure interiors and furniture are the focus, rather than ceilings.
-    - **Hero Image**: `center 40%`.
-    - **Room Cards**: `center 60%`.
-    - **Shared Spaces**: `center 70%`.
-    - **Gallery & Experiences**: `center 50%`.
-- **Consistency**: Guaranteed `object-fit: cover` and `width: 100%` for all images to ensure uniform scaling.
+### 2. Dot Separator Removal
+- Identified that the "invisible dots" were actually default bullet points appearing due to missing `list-style: none` rules on some pages.
+- Applied global `list-style: none` to all `ul` elements site-wide.
+- Verified that all dot separators or bullets between navigation links are now completely removed, providing a clean, spaced-out layout.
 
-## Verification Results
+## Verification Scenarios
 
-### Mobile Navigation
-- Tested on simulated 320px and 375px widths. "Contact" and "Gallery" labels hide gracefully on extreme mobile widths, leaving "Home | Spaces | Rooms" and the "Book Now" button perfectly visible and accessible.
+### On Index Page
+- **Start**: Navbar links are white on the hero.
+- **Scroll**: As the hero leaves the viewport, the links turn dark.
+- **Return**: Links turn back to white when returning to the top.
 
-### Image Positioning
-- Verified that common area images now show more of the flooring and furniture instead of being cut off at the ceiling.
-- Room card images now show the bed and decor more clearly.
+### On Other Pages
+- Links are consistently dark and clearly visible.
+- No bullet points or dots appear in the navbar.
 
 ## Final Sync
 - All changes committed and pushed to GitHub [`main`](https://github.com/Quickaxis/midtown-retreat-.git).

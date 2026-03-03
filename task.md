@@ -1,9 +1,9 @@
 # Tasks
 
-- [x] Refining Navbar and Image Positioning
-    - [x] Update implementation plan for navbar and image rules
-    - [x] Refine `index.html` navbar and image positioning
-    - [x] Refine `rooms.html` navbar and image positioning
-    - [x] Refine `explore.html` navbar and image positioning
-    - [x] Verify changes on mobile and desktop
+- [x] Fixing Navbar Visibility and Styles
+    - [x] Create implementation plan (temp)
+    - [x] Update `rooms.html` with dark navbar links and remove dots
+    - [x] Update `explore.html` with dark navbar links and remove dots
+    - [x] Update `index.html` with Dynamic Color Switching (IntersectionObserver)
+    - [x] Verify changes across all pages
     - [x] Push updates to GitHub
