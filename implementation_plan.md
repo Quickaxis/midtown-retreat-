@@ -33,10 +33,38 @@ This plan covers the second phase of refinements for the Midtown Retreat website
 - Global CSS rule for `img { object-fit: cover; object-position: center 30%; }`.
 - Exceptions for `.gallery-item img` (center center) and `.about-collage img` (center top).
 
+# Navbar and Image Positioning Refinement
+
+## Goal Description
+Improve space management in the mobile navbar to prevent text truncation and adjust image positioning to ensure ceilings are not the primary focus (focusing more on interiors).
+
+## Proposed Changes
+
+### Navbar Refinements
+- **[MODIFY] index.html, rooms.html, explore.html**
+    - Replace "Discover" with "Home" and link to `index.html`.
+    - Reorder links: Home | Spaces | Rooms | Gallery | Contact.
+    - Set mobile logo height to 28px.
+    - Set link font size to 11px and padding to `0 8px`.
+    - Ensure "Contact" is fully visible.
+    - Set navbar pill padding to `8px 12px`.
+    - Implement conditional visibility for "Gallery" and "Contact" labels on very small screens.
+
+### Image Positioning
+- **[MODIFY] index.html, rooms.html, explore.html**
+    - Shared Spaces: `object-position: center 70%`.
+    - Room Cards: `object-position: center 60%`.
+    - Gallery: `object-position: center 50%`.
+    - Nearby Experiences: `object-position: center 50%`.
+    - Hero Image: `object-position: center 40%`.
+    - Global `object-fit: cover` and `width: 100%`.
+
 ## Verification Plan
+### Automated Tests
+- Check styles via browser inspection.
 
 ### Manual Verification
-- **Mobile**: Check nav scroll and link visibility on small screens.
-- **Cards**: Verify room card height and image cropping on desktop/mobile.
+- Test mobile view on different screen sizes (320px, 375px, 414px) to ensure no link truncation.
+- Verify image cropping across all pages.
 - **Lightbox**: Click one image of each type (Shared, Room, Gallery, Experience) on each page. Verify Next/Prev through all images.
 - **Transitions**: Check fade transitions between pages still work.

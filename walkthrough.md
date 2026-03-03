@@ -1,45 +1,34 @@
-# Walkthrough: Midtown Retreat Restructuring & UI Refinements
+# Walkthrough - Navbar and Image Refinements
 
-The Midtown Retreat website has been restructured into three pages and refined with advanced UI/UX features for a premium experience.
+I have refined the Midtown Retreat website to improve mobile navigation and image presentation.
 
 ## Changes Made
 
-### 1. Multi-Page Restructure
-- **index.html**: Home page featuring the Hero, About, and Shared Spaces.
-- **rooms.html**: Dedicated page for Rooms, Amenities, and the Photo Gallery.
-- **explore.html**: Dedicated page for Nearby Experiences, Reviews, and Booking.
+### 1. Mobile Navigation Optimization
+- **Home Link**: Replaced "Discover" with "Home" for clearer navigation.
+- **Link Reordering**: Organized links as Home | Spaces | Rooms | Gallery | Contact.
+- **Space Management**:
+    - Reduced link font-size to 11px and padding to `0 8px` on mobile.
+    - Reduced logo height to 28px on mobile to give more breathing room.
+    - Implemented conditional hiding of "Gallery" and "Contact" labels on screens smaller than 400px to ensure the most critical links remain visible.
+- **Visuals**: Maintain the glassmorphism aesthetic with improved spacing.
 
-### 2. Mobile Navigation Overhaul
-- **Pill Navbar**: Replaced the hamburger menu with a horizontal scrolling pill on mobile.
-- **UX**: All links are directly accessible, centered, and scrollable on small screens.
-- **Styling**: 12px DM Sans font, transparent glass on hero sections, white glass on scroll.
-
-### 3. Refined Room Cards (rooms.html)
-- **Dimensions**: Min-height 680px (desktop) for a more commanding presence.
-- **Images**: Fixed height (380px desktop / 280px mobile) with `object-position: center 30%` to better showcase interiors.
-- **Mobile**: Cards display full-width and stacked for better readability.
-
-### 4. Global Unified Lightbox
-- **Feature**: Click ANY image sitewide to view it full-screen.
-- **UI**: 95vw/90vh contain-fit images with navigation arrows and a "✕" close button.
-- **UX**: Supports keyboard navigation (ESC to close, Arrows to navigate), locks body scroll when active, and features smooth scale/opacity animations.
-
-### 5. Sitewide Image Consistency
-- **Global Positioning**: All images now use `object-fit: cover` and `object-position: center 30%`.
-- **Special Cases**: Gallery images are centered, and About collage images are top-aligned to preserve composition.
+### 2. Image Positioning & Focus
+- **Interior Priority**: Adjusted `object-position` across all major image types to ensure interiors and furniture are the focus, rather than ceilings.
+    - **Hero Image**: `center 40%`.
+    - **Room Cards**: `center 60%`.
+    - **Shared Spaces**: `center 70%`.
+    - **Gallery & Experiences**: `center 50%`.
+- **Consistency**: Guaranteed `object-fit: cover` and `width: 100%` for all images to ensure uniform scaling.
 
 ## Verification Results
 
-### Navigation & UX
-- [x] Horizontal scroll nav on mobile (Success)
-- [x] Fixed/Glass navbar transition (Success)
-- [x] Back to top button (Success)
+### Mobile Navigation
+- Tested on simulated 320px and 375px widths. "Contact" and "Gallery" labels hide gracefully on extreme mobile widths, leaving "Home | Spaces | Rooms" and the "Book Now" button perfectly visible and accessible.
 
-### Visuals
-- [x] Room card height and image cropping (Success)
-- [x] Global image positioning manually checked (Success)
+### Image Positioning
+- Verified that common area images now show more of the flooring and furniture instead of being cut off at the ceiling.
+- Room card images now show the bed and decor more clearly.
 
-### Integrated Lightbox
-- [x] Works on room cards, shared spaces, gallery, and experiences (Success)
-- [x] Navigation arrows and keyboard shortcuts (Success)
-- [x] Body scroll lock (Success)
+## Final Sync
+- All changes committed and pushed to GitHub [`main`](https://github.com/Quickaxis/midtown-retreat-.git).
