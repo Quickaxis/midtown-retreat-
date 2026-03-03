@@ -1,10 +1,28 @@
-# Task: Midtown Retreat - Refine Hero & Typography
+# Tasks
 
-- [x] Update Typography
-    - [x] Import "Playfair Display" Google Font
-    - [x] Update Hero heading (100px, weight 800, italic)
-    - [x] Update Section headings to Playfair Display (weight 700)
-- [x] Refine Glass Effects
-    - [x] Transparent glass navbar (white text, specific blur/rgba)
-    - [x] Transparent glass hero floating card (white text)
-- [x] Final Verification
+- [x] Planning and Analysis
+    - [x] Analyze current `index.html`
+    - [x] Create implementation plan
+- [x] Restructuring Base Pages
+    - [x] Create `index.html` (Home)
+    - [x] Create `rooms.html` (Rooms & Amenities)
+    - [x] Create `explore.html` (Explore & Book)
+- [x] Applying Image Fixes & Gallery Lightbox
+    - [x] Force aspect ratios and object-fit on cards
+    - [x] Implement Lightbox for Gallery
+    - [x] Fix Shared Spaces card heights
+    - [x] Apply About section collage styling
+- [x] Mobile Improvements
+    - [x] Responsive heading sizes
+    - [x] 2x4 grid for Amenities
+    - [x] Mini-card layout for Nearby Experiences
+    - [x] Review card font sizing and layout
+    - [x] Booking CTA layout adjustment
+    - [x] Smooth page transitions
+- [x] Footer & Final Touches
+    - [x] Update footer with nav, Instagram, and phone
+    - [x] Add "Back to Top" button
+    - [x] Add page titles and meta descriptions
+- [x] Verification
+    - [x] Test navigation and mobile responsiveness
+    - [x] Verify image fixes and lightbox

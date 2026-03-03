@@ -1,41 +1,55 @@
-# Refinement Plan: Bold Typography & Transparent Glass
+# Architecture Restructuring: Midtown Retreat
 
-Enhancing the Apple-inspired redesign with bolder typography and high-transparency glass effects for the hero section.
+The goal is to restructure the Midtown Retreat website from a single long page into three separate, focused pages: Home, Rooms & Amenities, and Explore & Book.
 
-## Design Refinements
+## User Review Required
 
-### Typography (Bulkier & Elegant)
-- **Headings (Playfair Display)**:
-  - Hero: 100px, font-weight 800, italic, line-height 1.0, tight letter-spacing (-0.02em).
-  - Global Sections: Playfair Display, font-weight 700.
-- **Hero Subtext**: DM Sans 700 (Bold), 18px, white, 0.9 opacity.
-
-### Glass Effects (Transparent & Sharp)
-- **Transparent Navbar**:
-  - `background: rgba(255,255,255,0.08)`
-  - `backdrop-filter: blur(20px)`
-  - White link text and transparent logo background.
-- **Hero Floating Card**:
-  - `background: rgba(255,255,255,0.12)`
-  - `backdrop-filter: blur(16px)`
-  - White text.
+> [!IMPORTANT]
+> - All styles and scripts will be duplicated across the three pages for consistency, but if you'd prefer a separate `styles.css` and `scripts.js`, please let me know. For now, I'll keep them internal to each file as per the existing structure.
+> - The active page highlighting in the navbar will be implemented using a CSS class `.active` and a JS check (or hardcoding per page).
 
 ## Proposed Changes
-- [MODIFY] `index.html`: Update Google Fonts import, CSS variables for fonts, and styles for navbar/hero/headings.
+
+### Global Changes
+- **Navbar Links**: Update all links to point to the correct files and anchors (e.g., `index.html#spaces`, `rooms.html#gallery`).
+- **Footer**: Update with social links, phone number, and "Designed by Aetheron Core" text.
+- **Page Transitions**: Add fade-in (0.4s) on page load and fade-out (0.2s) on internal link clicks.
+- **Back to Top**: Add floating gold button appearing after 300px scroll.
+
+### index.html (Home)
+- **Sections**: Navbar, Hero, About, Shared Spaces, Footer.
+- **Image Fixes**:
+  - About section collage: 3/4 aspect ratio, 20px border-radius.
+  - Shared Spaces: Fixed height (220px mobile / 260px desktop), `object-position: center top`.
+- **SEO**: Title: "Midtown Retreat | Homestay in Dibrugarh", Meta description: "A cozy escape in the heart of Dibrugarh..."
+
+### rooms.html (Rooms & Amenities)
+- **Sections**: Navbar, Your Room Awaits (Room Cards), Everything You Need (Amenities), What Stillness Looks Like (Gallery), Footer.
+- **Image Fixes**:
+  - Room cards: 4/3 aspect ratio.
+  - Gallery images: 4/3 aspect ratio, Implement Lightbox.
+- **Amenities**: 2x4 grid on mobile.
+- **SEO**: Title: "Rooms & Amenities | Midtown Retreat"
+
+### explore.html (Explore & Book)
+- **Sections**: Navbar, Beyond the Retreat (Experiences), Heartfelt Stays (Reviews), House Rules, Your Escape Is Waiting (CTA), Footer.
+- **Image Fixes**:
+  - Experiences cards: 180px fixed height, mini-card layout on mobile (image left, text right).
+- **Reviews**: 18px quote font size on mobile, vertical scroll.
+- **Booking CTA**: Side-by-side buttons on mobile, 52px heading.
+- **SEO**: Title: "Explore & Book | Midtown Retreat"
 
 ## Verification Plan
-- [ ] Verify legibility of white text on transparent glass over the hero image.
-- [ ] Check "Playfair Display" rendering at large sizes (100px).
-- [ ] Audit all section headings for weight consistency.
 
-## Room Pricing Overhaul
-| Room | Original | Disc. Price | Badge |
-|---|---|---|---|
-| Sage | ₹2,500 | ₹1,600 | 36% OFF |
-| Teal | ₹3,000 | ₹1,800 | 40% OFF |
-| Gold | ₹3,500 | ₹2,000 | 43% OFF |
+### Automated Tests
+- None specified.
 
-## Verification Plan
-- [ ] Check glassmorphism consistency across browsers.
-- [ ] Verify typography scaling and tight tracking.
-- [ ] Test mobile responsiveness of the floating pill navbar.
+### Manual Verification
+- **Navigation**: Click every link in the navbar across all three pages to ensure correct redirection and anchor scrolling.
+- **Mobile Responsiveness**: Use browser dev tools (e.g., iPhone 12 Pro) to verify:
+  - Header font sizes (clamping).
+  - Amenities 2x4 grid.
+  - Mini-card layout for nearby experiences.
+  - Booking CTA buttons side-by-side.
+- **Lightbox**: Click gallery images and verify overlay, arrows, and close button.
+- **Page Transitions**: Verify fade transitions between pages.

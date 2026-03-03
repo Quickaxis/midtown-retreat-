@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rooms & Amenities | Midtown Retreat</title>
+    <meta name="description"
+        content="Discover our thoughtfully designed rooms and premium amenities at Midtown Retreat. Choose from The Sage Room, The Teal Studio, or The Gold Suite.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #0d4a47;
+            --accent: #c9a84c;
+            --bg: #f8f6f2;
+            --white: #ffffff;
+            --text-main: #3a3a3a;
+            --muted: #666666;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'DM Sans', sans-serif;
+            --section-padding: 120px 8%;
+            --section-padding-mobile: 80px 5%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-main);
+            background-color: var(--bg);
+            line-height: 1.7;
+            overflow-x: hidden;
+            font-size: 17px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        body.loaded {
+            opacity: 1;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--font-heading);
+            color: var(--primary);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        section {
+            padding: var(--section-padding);
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 15px;
+            border: none;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: white;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.02);
+            filter: brightness(1.05);
+        }
+
+        /* --- Navbar --- */
+        nav {
+            position: fixed;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: fit-content;
+            min-width: 700px;
+            background: rgba(13, 74, 71, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 24px;
+            z-index: 1000;
+        }
+
+        .logo img {
+            height: 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            color: white;
+            opacity: 0.8;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            opacity: 1;
+            color: var(--accent);
+        }
+
+        .btn-book {
+            background: var(--accent);
+            color: var(--white);
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+        }
+
+        /* --- Rooms Section --- */
+        .rooms-header h2 {
+            font-size: clamp(32px, 8vw, 64px);
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .room-card {
+            background: var(--white);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.07);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .room-img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .room-content {
+            padding: 32px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .room-name {
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .actual-price {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .room-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 20px 0;
+        }
+
+        .room-features li {
+            background: rgba(13, 74, 71, 0.05);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        .btn-room {
+            background: var(--primary);
+            color: white;
+            width: 100%;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        /* --- Amenities --- */
+        .amenities {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+        }
+
+        .amenities h2 {
+            color: white;
+            margin-bottom: 60px;
+            font-size: clamp(32px, 8vw, 52px);
+        }
+
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .amenity-item {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        .amenity-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* --- Gallery --- */
+        .gallery h2 {
+            font-size: clamp(32px, 8vw, 64px);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 4/3;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* --- Lightbox --- */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-img {
+            max-width: 92vw;
+            max-height: 88vh;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            padding: 20px;
+            user-select: none;
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 80px 5% 40px;
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 40px;
+            align-items: start;
+            margin-bottom: 60px;
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+        }
+
+        .footer-nav a {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 44px;
+            height: 44px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s;
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 0.8s;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 968px) {
+            nav {
+                min-width: 90%;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .rooms-grid,
+            .amenities-grid,
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .amenities-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            /* 2x4 grid on mobile requested */
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: var(--section-padding-mobile);
+            }
+
+            .amenities-grid {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 10px;
+            }
+
+            .amenity-item {
+                padding: 15px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="navbar">
+        <div class="logo"><img src="images/logo-transparent.png" alt="Logo"></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Discover</a></li>
+            <li><a href="index.html#spaces">Spaces</a></li>
+            <li><a href="rooms.html" class="active">Rooms</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="explore.html#booking">Contact</a></li>
+        </ul>
+        <a href="https://wa.me/916001941547" class="btn btn-book">Book Now</a>
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <section class="rooms">
+        <div class="container">
+            <div class="rooms-header reveal">
+                <h2>Your Room Awaits</h2>
+                <p style="text-align: center; margin-bottom: 40px; opacity: 0.7;">Choice materials, thoughtful lighting,
+                    and the quiet you deserve.</p>
+            </div>
+            <div class="rooms-grid">
+                <div class="room-card reveal">
+                    <img src="images/room1600.jpg" class="room-img" alt="The Sage Room">
+                    <div class="room-content">
+                        <span class="room-name">The Sage Room</span>
+                        <div class="price">
+                            <span class="actual-price">₹1,600</span>
+                            <span style="font-size: 12px; opacity: 0.6;">/ night</span>
+                        </div>
+                        <p style="font-size: 14px; margin: 15px 0;">Earthy sage green walls, warm wood tones — a calm
+                            space to reset.</p>
+                        <ul class="room-features">
+                            <li>AC</li>
+                            <li>Wardrobe</li>
+                            <li>Marble Flooring</li>
+                        </ul>
+                        <a href="https://wa.me/916001941547" class="btn btn-room">Book Room</a>
+                    </div>
+                </div>
+                <div class="room-card reveal">
+                    <img src="images/room1800.jpg" class="room-img" alt="The Teal Studio">
+                    <div class="room-content">
+                        <span class="room-name">The Teal Studio</span>
+                        <div class="price">
+                            <span class="actual-price">₹1,800</span>
+                            <span style="font-size: 12px; opacity: 0.6;">/ night</span>
+                        </div>
+                        <p style="font-size: 14px; margin: 15px 0;">Bold teal walls, velvet lounge seating — where style
+                            meets comfort.</p>
+                        <ul class="room-features">
+                            <li>AC</li>
+                            <li>Smart TV</li>
+                            <li>Sitting Area</li>
+                        </ul>
+                        <a href="https://wa.me/916001941547" class="btn btn-room">Book Room</a>
+                    </div>
+                </div>
+                <div class="room-card reveal" style="border: 1px solid var(--accent);">
+                    <img src="images/room2000.jpg" class="room-img" alt="The Gold Suite">
+                    <div class="room-content">
+                        <span class="room-name">The Gold Suite</span>
+                        <div class="price">
+                            <span class="actual-price">₹2,000</span>
+                            <span style="font-size: 12px; opacity: 0.6;">/ night</span>
+                        </div>
+                        <p style="font-size: 14px; margin: 15px 0;">Our premium room — refined, warm, and designed for
+                            extra comfort.</p>
+                        <ul class="room-features">
+                            <li>AC</li>
+                            <li>Mini Bar</li>
+                            <li>Smart TV</li>
+                        </ul>
+                        <a href="https://wa.me/916001941547" class="btn btn-room">Book Room</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="amenities">
+        <div class="container">
+            <h2 class="reveal">Everything You Need</h2>
+            <div class="amenities-grid">
+                <div class="amenity-item reveal"><span>Private AC Rooms</span></div>
+                <div class="amenity-item reveal"><span>Common Kitchen</span></div>
+                <div class="amenity-item reveal"><span>Common Hall</span></div>
+                <div class="amenity-item reveal"><span>Free Parking</span></div>
+                <div class="amenity-item reveal"><span>Smart TV</span></div>
+                <div class="amenity-item reveal"><span>Mini Bar</span></div>
+                <div class="amenity-item reveal"><span>Daily Housekeeping</span></div>
+                <div class="amenity-item reveal"><span>3 Private Rooms</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2 class="reveal">What Stillness Looks Like</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item reveal"><img src="images/common1.jpg" alt="Gallery 1"></div>
+                <div class="gallery-item reveal"><img src="images/common2.jpg" alt="Gallery 2"></div>
+                <div class="gallery-item reveal"><img src="images/room1600.jpg" alt="Gallery 3"></div>
+                <div class="gallery-item reveal"><img src="images/room1800.jpg" alt="Gallery 4"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div><img src="images/logo-transparent.png" alt="Logo" style="height: 40px; margin-bottom: 20px;">
+                    <p style="opacity: 0.6; font-size: 14px;">Modern minimal luxury in Dibrugarh.</p>
+                </div>
+                <div class="footer-nav"><a href="index.html">Home</a><a href="rooms.html">Rooms</a><a
+                        href="explore.html">Explore</a><a href="https://instagram.com/midtown__retreat">Instagram</a>
+                </div>
+                <div style="text-align: right;">
+                    <p style="font-weight: 700;">+91 6001941547</p>
+                    <p style="opacity: 0.6; font-size: 14px;">@midtown__retreat</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Midtown Retreat. All rights reserved.</p>
+                <p style="font-size: 11px;">Designed by Aetheron Core</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="back-to-top" id="backToTop">↑</div>
+
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close">✕</span>
+        <span class="lightbox-nav lightbox-prev">‹</span>
+        <img class="lightbox-img" src="" alt="Enlarged image">
+        <span class="lightbox-nav lightbox-next">›</span>
+    </div>
+
+    <script>
+        window.addEventListener('load', () => document.body.classList.add('loaded'));
+
+        // Fade out on navigation
+        document.querySelectorAll('a').forEach(link => {
+            if (link.hostname === window.location.hostname && !link.hash) {
+                link.addEventListener('click', e => {
+                    e.preventDefault();
+                    document.body.style.opacity = '0';
+                    setTimeout(() => window.location.href = link.href, 200);
+                });
+            }
+        });
+
+        window.addEventListener('scroll', () => {
+            const btt = document.getElementById('backToTop');
+            if (window.scrollY > 300) btt.classList.add('visible');
+            else btt.classList.remove('visible');
+        });
+        document.getElementById('backToTop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Mobile Menu
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.left = '0';
+            navLinks.style.width = '100%';
+            navLinks.style.background = 'var(--primary)';
+            navLinks.style.padding = '20px';
+        });
+
+        // Lightbox Logic
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = lightbox.querySelector('.lightbox-img');
+        const galleryItems = document.querySelectorAll('.gallery-item img');
+        let currentIndex = 0;
+
+        galleryItems.forEach((img, index) => {
+            img.parentElement.addEventListener('click', () => {
+                currentIndex = index;
+                showLightbox();
+            });
+        });
+
+        function showLightbox() {
+            lightboxImg.src = galleryItems[currentIndex].src;
+            lightbox.classList.add('active');
+        }
+
+        lightbox.querySelector('.lightbox-close').addEventListener('click', () => lightbox.classList.remove('active'));
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.classList.remove('active'); });
+
+        lightbox.querySelector('.lightbox-prev').addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+            showLightbox();
+        });
+        lightbox.querySelector('.lightbox-next').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % galleryItems.length;
+            showLightbox();
+        });
+    </script>
+</body>
+
+</html>
