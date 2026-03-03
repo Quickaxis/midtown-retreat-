@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Midtown Retreat Homestay | Modern Minimal Luxury in Dibrugarh</title>
+    <meta name="description"
+        content="A cozy escape in the heart of Dibrugarh, Assam, where comfort meets calm. Discover modern minimal luxury at Midtown Retreat.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #0d4a47;
+            --accent: #c9a84c;
+            --bg: #f8f6f2;
+            /* Warm off-white */
+            --white: #ffffff;
+            --black: #1a1a1a;
+            --text-main: #3a3a3a;
+            --muted: #666666;
+            --glass-bg: rgba(255, 255, 255, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'DM Sans', sans-serif;
+            --section-padding: 120px 8%;
+            --section-padding-mobile: 80px 5%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-main);
+            background-color: var(--bg);
+            line-height: 1.7;
+            overflow-x: hidden;
+            font-size: 17px;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--primary);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        section {
+            padding: var(--section-padding);
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border-radius: 50px;
+            /* Fully pill shaped */
+            font-weight: 500;
+            display: inline-block;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 15px;
+            text-align: center;
+            border: none;
+            background: none;
+        }
+
+        .btn:hover {
+            transform: scale(1.02);
+            filter: brightness(1.05);
+        }
+
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            border-radius: 24px;
+        }
+
+        /* --- Scroll Animations --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Navbar --- */
+        nav {
+            position: fixed;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: fit-content;
+            min-width: 700px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 50px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 24px;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        .logo {
+            background: transparent;
+        }
+
+        .logo img {
+            height: 32px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 500;
+            color: white;
+            opacity: 0.8;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        .btn-book {
+            background: var(--accent);
+            color: var(--white);
+            padding: 10px 24px;
+            border: none;
+            border-radius: 50px;
+            font-size: 14px;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--primary);
+            transition: 0.3s;
+        }
+
+        /* --- Hero --- */
+        .hero {
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            overflow: hidden;
+            background: url('images/hero-new.jpg') center/cover no-repeat;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5));
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1000px;
+        }
+
+        .hero h1 {
+            font-size: 100px;
+            line-height: 1.0;
+            color: var(--white);
+            margin-bottom: 24px;
+            font-style: italic;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            text-transform: none;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: white;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 700;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .btn-explore {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: var(--white);
+            text-transform: none;
+        }
+
+        .btn-gold {
+            background: var(--accent);
+            color: var(--white);
+            padding: 15px 35px;
+            border-radius: 50px;
+        }
+
+        .hero-floating-card {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 16px 24px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            z-index: 2;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-floating-card img {
+            height: 32px;
+            width: 32px;
+            object-fit: contain;
+        }
+
+        /* --- About --- */
+        .about {
+            background: #fffafa;
+            /* Very subtle warm tint */
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about h2 {
+            font-size: 64px;
+            line-height: 1.1;
+            margin-bottom: 32px;
+            text-transform: none;
+        }
+
+        .about-values {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .tag-pill {
+            background: rgba(13, 74, 71, 0.08);
+            border: 1px solid rgba(13, 74, 71, 0.15);
+            border-radius: 50px;
+            padding: 6px 18px;
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        .about-desc p {
+            font-size: 17px;
+            color: var(--text-main);
+            margin-bottom: 0;
+        }
+
+        .about-collage {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            height: auto;
+        }
+
+        .about-collage div {
+            border-radius: 20px;
+            height: 500px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+        }
+
+        /* --- Shared Spaces --- */
+        .spaces {
+            background: var(--bg);
+        }
+
+        .spaces-header h2 {
+            font-size: 64px;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            text-transform: none;
+        }
+
+        .spaces-main-img {
+            border-radius: 24px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            position: relative;
+            height: 700px;
+        }
+
+        .spaces-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .space-card {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .space-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .space-card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            margin-bottom: 0;
+        }
+
+        .space-card-content {
+            padding: 24px;
+        }
+
+        .space-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            text-transform: none;
+        }
+
+        .space-card p {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        /* --- Rooms --- */
+        .rooms {
+            background: var(--white);
+            padding: 120px 5%;
+        }
+
+        .rooms-header h2 {
+            font-size: 64px;
+            line-height: 1.1;
+            margin-bottom: 60px;
+            text-transform: none;
+        }
+
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .room-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.85);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+            min-height: 650px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .room-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        .room-card.highlight {
+            border: 1.5px solid rgba(201, 168, 76, 0.6);
+            box-shadow: 0 8px 40px rgba(201, 168, 76, 0.15);
+        }
+
+        .room-img {
+            height: 320px;
+            width: 100%;
+            position: relative;
+            margin-bottom: 0;
+            aspect-ratio: auto;
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--accent);
+            color: var(--white);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 50px;
+            z-index: 2;
+        }
+
+        .room-content {
+            padding: 32px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .room-name {
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-family: var(--font-body);
+            font-weight: 600;
+        }
+
+        .price-container {
+            margin-bottom: 24px;
+        }
+
+        .strike-price {
+            font-size: 16px;
+            color: #999;
+            text-decoration: line-through;
+            margin-right: 8px;
+        }
+
+        .actual-price {
+            font-size: 38px;
+            font-weight: 700;
+            color: var(--primary);
+            display: block;
+        }
+
+        .price-sub {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .room-desc {
+            font-size: 16px;
+            color: var(--muted);
+            margin-bottom: 24px;
+        }
+
+        .room-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 32px;
+        }
+
+        .room-features li {
+            background: rgba(13, 74, 71, 0.08);
+            border: 1px solid rgba(13, 74, 71, 0.15);
+            border-radius: 50px;
+            padding: 8px 16px;
+            font-size: 13px;
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        .btn-room-book {
+            background: var(--primary) !important;
+            color: var(--white) !important;
+            width: 100%;
+            border-radius: 50px;
+            padding: 16px;
+            text-align: center;
+            font-size: 15px;
+            margin-top: auto;
+            border: none;
+            border-bottom: none;
+        }
+
+        .btn-room-book:hover {
+            background: var(--accent) !important;
+        }
+
+        /* --- Amenities --- */
+        .amenities {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .amenities h2 {
+            font-size: 52px;
+            color: var(--white);
+            text-align: center;
+            margin-bottom: 60px;
+            text-transform: none;
+        }
+
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .amenity-item {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            border-bottom: none;
+        }
+
+        .amenity-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .amenity-item span {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--white);
+            text-transform: none;
+            letter-spacing: normal;
+        }
+
+        /* --- Gallery --- */
+        .gallery {
+            background: var(--bg);
+        }
+
+        .gallery h2 {
+            font-size: 64px;
+            text-align: center;
+            margin-bottom: 40px;
+            text-transform: none;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            grid-auto-rows: 250px;
+        }
+
+        .gallery-item {
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.4s ease;
+            background: #eee;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+
+        .btn-gallery {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            text-transform: none;
+        }
+
+        /* --- Experiences --- */
+        .exp {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .exp h2 {
+            font-size: 64px;
+            color: var(--white);
+            text-transform: none;
+        }
+
+        .exp-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .exp-card {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 24px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 32px;
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .exp-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 16px;
+            object-fit: cover;
+        }
+
+        /* --- Reviews --- */
+        .reviews {
+            background: var(--white);
+        }
+
+        .reviews h2 {
+            font-size: 64px;
+            text-transform: none;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .review-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            padding: 40px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+            text-align: left;
+        }
+
+        .review-card p {
+            font-family: var(--font-heading);
+            font-style: italic;
+            font-size: 20px;
+            line-height: 1.5;
+            margin-bottom: 24px;
+            color: var(--text-main);
+        }
+
+        .guest-name {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* --- Rules --- */
+        .rules-wrapper {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 80px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .rules-title {
+            font-size: 48px;
+            margin-bottom: 40px;
+            text-transform: none;
+        }
+
+        .rule-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .rule-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 16px;
+            color: var(--text-main);
+        }
+
+        .rule-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+
+        /* --- Contact --- */
+        .contact {
+            background: var(--primary);
+            color: var(--white);
+            text-align: center;
+            padding: 150px 5%;
+        }
+
+        .contact h2 {
+            font-size: 72px;
+            color: var(--white);
+            font-style: italic;
+            margin-bottom: 60px;
+            text-transform: none;
+        }
+
+        .btn-wa {
+            background: rgba(201, 168, 76, 0.9);
+            color: var(--white);
+            padding: 18px 48px;
+        }
+
+        .btn-call {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1.5px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: var(--white);
+            border-radius: 50px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 60px 5%;
+            background: var(--bg);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* --- Mobile --- */
+        @media (max-width: 968px) {
+            nav {
+                min-width: 90%;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 56px;
+            }
+
+            .about,
+            .spaces-grid,
+            .rooms-grid,
+            .amenities-grid,
+            .exp-grid,
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about h2,
+            .spaces-header h2,
+            .rooms-header h2,
+            .gallery h2 {
+                font-size: 42px;
+            }
+
+            .rules-wrapper {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav id="navbar">
+        <div class="logo">
+            <img src="images/logo-transparent.png" alt="Midtown Retreat Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#about">Discover</a></li>
+            <li><a href="#spaces">Spaces</a></li>
+            <li><a href="#rooms">Rooms</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="https://wa.me/916001941547" class="btn btn-book">Book Your Stay</a>
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content reveal">
+            <h1>Escape the noise.<br>Stay in the heart.</h1>
+            <p>A cozy escape in the heart of the city, where comfort meets calm. — Dibrugarh, Assam</p>
+            <div class="hero-btns">
+                <a href="#about" class="btn btn-explore">Explore More</a>
+                <a href="https://wa.me/916001941547" class="btn btn-gold">Book Your Stay</a>
+            </div>
+        </div>
+        <div class="hero-floating-card">
+            <img src="images/logo.jpg" alt="MR Logo">
+            <span>Midtown Retreat | Homestay</span>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="about-text reveal">
+            <h2>Rooted in the City.<br>Designed for Comfort.</h2>
+            <div class="about-values">
+                <span class="tag-pill">Private & Peaceful</span>
+                <span class="tag-pill">Centrally Located</span>
+                <span class="tag-pill">Thoughtfully Designed</span>
+            </div>
+            <div class="about-desc">
+                <p>Midtown Retreat is where the city's energy meets quiet comfort. Tucked in the heart of Dibrugarh, our
+                    homestay offers three private rooms, a shared kitchen, and a common hall — designed for those who
+                    seek a home away from home. Whether you're here for work or wandering, we offer warmth, simplicity,
+                    and space.</p>
+            </div>
+        </div>
+        <div class="about-collage reveal">
+            <div style="background: url('images/common2.jpg') center/cover;"></div>
+            <div style="background: url('images/common3.jpg') center/cover;"></div>
+        </div>
+    </section>
+
+    <section id="spaces" class="spaces">
+        <div class="container">
+            <div class="spaces-header reveal">
+                <h2>Where the Home comes Alive</h2>
+                <p>Beyond your room, a home waits — a shared kitchen stocked for morning chai, a common hall to unwind,
+                    and
+                    spaces that feel genuinely lived-in.</p>
+            </div>
+            <div class="spaces-main-img reveal">
+                <img src="images/common1.jpg" alt="Common Hall">
+            </div>
+            <div class="spaces-grid">
+                <div class="space-card reveal">
+                    <img src="images/common2.jpg" alt="The Common Hall">
+                    <div class="space-card-content">
+                        <h3>The Common Hall</h3>
+                        <p>A spacious area to relax, read, or connect with fellow travelers.</p>
+                    </div>
+                </div>
+                <div class="space-card reveal">
+                    <img src="images/common3.jpg" alt="Shared Kitchen">
+                    <div class="space-card-content">
+                        <h3>Shared Kitchen</h3>
+                        <p>Fully equipped for your culinary experiments or a simple morning tea.</p>
+                    </div>
+                </div>
+                <div class="space-card reveal">
+                    <img src="images/common4.jpg" alt="The Entryway">
+                    <div class="space-card-content">
+                        <h3>The Entryway</h3>
+                        <p>Designed to welcome you with warmth from the moment you step in.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="rooms" class="rooms">
+        <div class="container">
+            <div class="rooms-header reveal">
+                <h2>Your Room Awaits</h2>
+                <p>Three private rooms, each with its own character.</p>
+            </div>
+            <div class="rooms-grid">
+                <!-- Room 1 -->
+                <div class="room-card reveal">
+                    <div class="room-img" style="background: url('images/room1600.jpg') center/cover;">
+                        <span class="discount-badge">36% OFF</span>
+                    </div>
+                    <div class="room-content">
+                        <span class="room-name">The Sage Room</span>
+                        <div class="price-container">
+                            <span class="strike-price">₹2,500</span>
+                            <span class="actual-price">₹1,600</span>
+                            <span class="price-sub">per night · taxes included</span>
+                        </div>
+                        <p class="room-desc">Earthy sage green walls, warm wood tones, and soft bedside lighting — a
+                            calm space to reset.</p>
+                        <ul class="room-features">
+                            <li>AC</li>
+                            <li>Wardrobe</li>
+                            <li>Marble Flooring</li>
+                        </ul>
+                        <a href="https://wa.me/916001941547" class="btn btn-room-book">Book This Room →</a>
+                    </div>
+                </div>
+                <!-- Room 2 -->
+                <div class="room-card reveal">
+                    <div class="room-img" style="background: url('images/room1800.jpg') center/cover;">
+                        <span class="discount-badge">40% OFF</span>
+                    </div>
+                    <div class="room-content">
+                        <span class="room-name">The Teal Studio</span>
+                        <div class="price-container">
+                            <span class="strike-price">₹3,000</span>
+                            <span class="actual-price">₹1,800</span>
+                            <span class="price-sub">per night · taxes included</span>
+                        </div>
+                        <p class="room-desc">Bold teal walls, velvet lounge seating, and a marble coffee table — where
+                            style meets comfort.</p>
+                        <ul class="room-features">
+                            <li>AC</li>
+                            <li>Smart TV</li>
+                            <li>Sitting Area</li>
+                        </ul>
+                        <a href="https://wa.me/916001941547" class="btn btn-room-book">Book This Room →</a>
+                    </div>
+                </div>
+                <!-- Room 3 -->
+                <div class="room-card highlight reveal">
+                    <div class="room-img" style="background: url('images/room2000.jpg') center/cover;">
+                        <span class="discount-badge">43% OFF</span>
+                    </div>
+                    <div class="room-content">
+                        <span class="room-name">The Gold Suite</span>
+                        <div class="price-container">
+                            <span class="strike-price">₹3,500</span>
+                            <span class="actual-price">₹2,000</span>
+                            <span class="price-sub">per night · taxes included</span>
+                        </div>
+                        <p class="room-desc">Our premium room — refined, warm, and designed for guests who want just a
+                            little more.</p>
+                        <ul class="room-features">
+                            <li>AC</li>
+                            <li>Mini Bar</li>
+                            <li>Smart TV</li>
+                        </ul>
+                        <a href="https://wa.me/916001941547" class="btn btn-room-book">Book This Room →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="amenities">
+        <div class="container">
+            <h2 class="reveal">Everything You Need</h2>
+            <div class="amenities-grid">
+                <div class="amenity-item reveal">
+                    <span>Private AC Rooms</span>
+                </div>
+                <div class="amenity-item reveal">
+                    <span>Common Kitchen</span>
+                </div>
+                <div class="amenity-item reveal">
+                    <span>Common Hall</span>
+                </div>
+                <div class="amenity-item reveal">
+                    <span>Free Parking</span>
+                </div>
+                <div class="amenity-item reveal">
+                    <span>Smart TV</span>
+                </div>
+                <div class="amenity-item reveal">
+                    <span>Mini Bar</span>
+                </div>
+                <div class="amenity-item reveal">
+                    <span>Daily Housekeeping</span>
+                </div>
+                <div class="amenity-item reveal">
+                    <span>3 Private Rooms</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2 class="reveal">What Stillness Looks Like</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item reveal" style="background: url('images/common1.jpg') center/cover;"></div>
+                <div class="gallery-item reveal" style="background: url('images/common2.jpg') center/cover;"></div>
+                <div class="gallery-item reveal" style="background: url('images/room1600.jpg') center/cover;"></div>
+                <div class="gallery-item reveal" style="background: url('images/room1800.jpg') center/cover;"></div>
+            </div>
+            <div style="text-align: center; margin-top: 60px;">
+                <a href="https://instagram.com/midtown__retreat" target="_blank" class="btn btn-gallery reveal">View
+                    Full Gallery @midtown__retreat</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="experiences" class="exp">
+        <div class="container">
+            <h2 class="reveal">Beyond the Retreat</h2>
+            <div class="exp-grid">
+                <div class="exp-card reveal">
+                    <img src="images/common4.jpg" alt="Tea Garden">
+                    <div>
+                        <h3>Tea Garden Trails</h3>
+                        <p>Explore the lush heritage of Dibrugarh with a walk through the world-famous tea estates, just
+                            minutes away.</p>
+                    </div>
+                </div>
+                <div class="exp-card reveal">
+                    <img src="images/common1.jpg" alt="Brahmaputra">
+                    <div>
+                        <h3>River Gazer</h3>
+                        <p>The Brahmaputra riverfront offers stunning sunsets and a peaceful breeze — the soul of the
+                            city.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <h2 class="reveal" style="text-align: center; margin-bottom: 60px;">Heartfelt Stays</h2>
+            <div class="reviews-grid">
+                <div class="review-card reveal">
+                    <p>"A true hidden gem in Dibrugarh. The minimal design and peaceful atmosphere made my work trip
+                        feel like a vacation."</p>
+                    <span class="guest-name">Arnav S.</span>
+                </div>
+                <div class="review-card reveal">
+                    <p>"The kitchen and common hall are so thoughtfully done. It felt more like staying at a friend's
+                        luxury apartment."</p>
+                    <span class="guest-name">Priya M.</span>
+                </div>
+                <div class="review-card reveal">
+                    <p>"Centrally located but surprisingly quiet. The host was incredibly helpful with local
+                        recommendations."</p>
+                    <span class="guest-name">Rahul D.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="rules" class="rules">
+        <div class="container">
+            <div class="rules-wrapper reveal">
+                <h2 class="rules-title">A Few Things to Know</h2>
+                <div class="rule-list">
+                    <li><span class="rule-dot"></span> Check-in: 12:00 PM | Check-out: 11:00 AM</li>
+                    <li><span class="rule-dot"></span> No loud music after 10:00 PM</li>
+                    <li><span class="rule-dot"></span> Smoking permitted in outdoor areas only</li>
+                    <li><span class="rule-dot"></span> Keep shared spaces clean (Kitchen & Hall)</li>
+                    <li><span class="rule-dot"></span> Valid ID proof required for all guests</li>
+                    <li><span class="rule-dot"></span> Respect neighbors and the quiet zone</li>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container reveal">
+            <h2>Your escape is waiting.</h2>
+            <div class="contact-btns">
+                <a href="https://wa.me/916001941547" class="btn btn-wa">Book on WhatsApp</a>
+                <a href="tel:6001941547" class="btn btn-call">Call to Book</a>
+            </div>
+            <p style="margin-top: 40px; opacity: 0.6; font-size: 14px;">Inquiries: +91 6001941547 | +91 7896979179</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container"
+            style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+            <div class="logo">
+                <img src="images/logo.jpg" alt="Midtown Retreat Logo" style="height: 32px;">
+            </div>
+            <p style="font-size: 14px; opacity: 0.6;">© 2025 Midtown Retreat Homestay. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for reveal animations
+        const revealCallback = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(revealCallback, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>
