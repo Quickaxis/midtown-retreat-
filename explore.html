@@ -603,25 +603,15 @@
         }
 
         /* --- Booking Modal --- */
-        .booking-modal-overlay {
+        #bookingModal {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             background: rgba(0, 0, 0, 0.6);
             z-index: 9999;
-            display: flex;
+            display: none;
+            /* Changed from flex */
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        .booking-modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
         }
 
         .booking-modal-card {
@@ -632,8 +622,7 @@
             width: 90%;
             box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25);
             position: relative;
-            transform: translateY(30px);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: modalSlideUp 0.3s ease;
             max-height: 90vh;
             overflow-y: auto;
             /* Hide scrollbar for card */
@@ -648,8 +637,16 @@
             /* Chrome, Safari and Opera */
         }
 
-        .booking-modal-overlay.active .booking-modal-card {
-            transform: translateY(0);
+        @keyframes modalSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .booking-modal-close {
@@ -845,15 +842,17 @@
 
 <body>
     <nav id="navbar">
-        <div class="logo"><img src="images/logo-transparent.png" alt="Logo"></div>
+        <div class="logo">
+            <img src="images/logo-solid.png" alt="Midtown Retreat Logo">
+        </div>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#spaces">Spaces</a></li>
+            <li><a href="index.html#spaces" class="active">Spaces</a></li>
             <li><a href="rooms.html">Rooms</a></li>
             <li class="nav-gallery"><a href="rooms.html#gallery"><span>Gallery</span></a></li>
             <li class="nav-contact"><a href="#booking" class="active"><span>Contact</span></a></li>
         </ul>
-        <a href="#" class="btn btn-book">Book Now</a>
+        <a href="javascript:void(0)" onclick="openBookingModal()" class="btn btn-book">Book Now</a>
     </nav>
 
     <section id="explore" class="exp">
@@ -923,8 +922,9 @@
         <div class="container reveal">
             <h2>Your escape is waiting.</h2>
             <div class="booking-btns">
-                <a href="#" class="btn btn-wa btn-book">Book on WhatsApp</a>
-                <a href="#" class="btn btn-call btn-book">Call to Book</a>
+                <a href="javascript:void(0)" onclick="openBookingModal()" class="btn btn-wa btn-book">Book on
+                    WhatsApp</a>
+                <a href="javascript:void(0)" onclick="openBookingModal()" class="btn btn-call btn-book">Call to Book</a>
             </div>
             <p style="margin-top: 40px; opacity: 0.6; font-size: 14px;">Inquiries: +91 6001941547 | +91 7896979179</p>
         </div>
@@ -954,9 +954,9 @@
     <div class="back-to-top" id="backToTop">↑</div>
 
     <!-- Booking Modal -->
-    <div class="booking-modal-overlay" id="bookingModal">
+    <div id="bookingModal">
         <div class="booking-modal-card">
-            <span class="booking-modal-close" id="closeModalBtn">✕</span>
+            <span class="booking-modal-close" onclick="closeBookingModal()">✕</span>
             <img src="images/logo-transparent.png" alt="Midtown Retreat Logo" class="booking-modal-logo">
             <h2 class="booking-modal-heading">Reserve Your Stay</h2>
             <p class="booking-modal-subtext">Choose how you'd like to reach us.<br>We confirm within the hour.</p>
@@ -1109,37 +1109,37 @@
         });
 
         // Booking Modal Logic
-        const bookingModal = document.getElementById('bookingModal');
-        const closeModalBtn = document.getElementById('closeModalBtn');
-        const bookWhatsApp = document.getElementById('bookWhatsApp');
-        const defaultWaText = 'Hi! I would like to book a room at Midtown Retreat';
+        function openBookingModal(roomName = '') {
+            const modal = document.getElementById('bookingModal');
+            const bookWhatsApp = document.getElementById('bookWhatsApp');
+            const defaultWaText = 'Hi! I would like to book a room at Midtown Retreat';
 
-        function openBookingModal(roomName = null) {
             if (roomName) {
                 const text = `Hi! I'd like to book ${roomName} at Midtown Retreat.`;
                 bookWhatsApp.setAttribute('onclick', `window.open('https://wa.me/916001941547?text=${encodeURIComponent(text)}', '_blank')`);
             } else {
                 bookWhatsApp.setAttribute('onclick', `window.open('https://wa.me/916001941547?text=${encodeURIComponent(defaultWaText)}', '_blank')`);
             }
-            bookingModal.classList.add('active');
+
+            modal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
 
         function closeBookingModal() {
-            bookingModal.classList.remove('active');
+            const modal = document.getElementById('bookingModal');
+            modal.style.display = 'none';
             document.body.style.overflow = '';
         }
 
-        closeModalBtn.addEventListener('click', closeBookingModal);
-
-        bookingModal.addEventListener('click', (e) => {
-            if (e.target === bookingModal) {
+        const modalOverlay = document.getElementById('bookingModal');
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
                 closeBookingModal();
             }
         });
 
         window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && bookingModal.classList.contains('active')) {
+            if (e.key === 'Escape' && modalOverlay.style.display === 'flex') {
                 closeBookingModal();
             }
         });
