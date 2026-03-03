@@ -1,55 +1,42 @@
-# Architecture Restructuring: Midtown Retreat
+# Implementation Plan: UI & UX Refinements (Mar 2026)
 
-The goal is to restructure the Midtown Retreat website from a single long page into three separate, focused pages: Home, Rooms & Amenities, and Explore & Book.
+This plan covers the second phase of refinements for the Midtown Retreat website, focusing on mobile navigation, room card design, and a unified lightbox system.
 
 ## User Review Required
 
 > [!IMPORTANT]
-> - All styles and scripts will be duplicated across the three pages for consistency, but if you'd prefer a separate `styles.css` and `scripts.js`, please let me know. For now, I'll keep them internal to each file as per the existing structure.
-> - The active page highlighting in the navbar will be implemented using a CSS class `.active` and a JS check (or hardcoding per page).
+> - Mobile Navigation: The hamburger menu will be replaced by a horizontal scrollable pill at the top. This is a significant change in UX for mobile users.
+> - Lightbox: Every image on the site will now trigger the lightbox. This includes descriptive cards and decor images.
 
 ## Proposed Changes
 
-### Global Changes
-- **Navbar Links**: Update all links to point to the correct files and anchors (e.g., `index.html#spaces`, `rooms.html#gallery`).
-- **Footer**: Update with social links, phone number, and "Designed by Aetheron Core" text.
-- **Page Transitions**: Add fade-in (0.4s) on page load and fade-out (0.2s) on internal link clicks.
-- **Back to Top**: Add floating gold button appearing after 300px scroll.
+### 1. Global Navigation (index, rooms, explore)
+- **CSS**: Remove `.menu-toggle` and hidden `.nav-links`.
+- **Nav Pill**: Width 100% on mobile (within container), `overflow-x: auto`, `white-space: nowrap`.
+- **Layout**: Flex container: Logo (left) | Nav Links (center, scrollable) | Book Button (right).
+- **Styles**: 12px font, DM Sans, fixed position, transparent/white glass effect.
 
-### index.html (Home)
-- **Sections**: Navbar, Hero, About, Shared Spaces, Footer.
-- **Image Fixes**:
-  - About section collage: 3/4 aspect ratio, 20px border-radius.
-  - Shared Spaces: Fixed height (220px mobile / 260px desktop), `object-position: center top`.
-- **SEO**: Title: "Midtown Retreat | Homestay in Dibrugarh", Meta description: "A cozy escape in the heart of Dibrugarh..."
+### 2. Room Cards (rooms.html)
+- **Dimensions**: Min-height 680px (desktop), Image height 380px (desktop) / 280px (mobile).
+- **Positioning**: `object-position: center 30%` for room images.
+- **Borders**: Image border-radius 0, Card border-radius 24px.
+- **Mobile**: Stack cards vertically, full width.
 
-### rooms.html (Rooms & Amenities)
-- **Sections**: Navbar, Your Room Awaits (Room Cards), Everything You Need (Amenities), What Stillness Looks Like (Gallery), Footer.
-- **Image Fixes**:
-  - Room cards: 4/3 aspect ratio.
-  - Gallery images: 4/3 aspect ratio, Implement Lightbox.
-- **Amenities**: 2x4 grid on mobile.
-- **SEO**: Title: "Rooms & Amenities | Midtown Retreat"
+### 3. Unified Lightbox (Global)
+- **HTML**: Standardized lightbox overlay on all pages.
+- **JS**: Logic to identify all `img` tags (excluding logo/icons) and trigger overlay.
+- **Controls**: Next/Prev arrows, ✕ close button, ESC key support.
+- **Lock**: `overflow: hidden` on body when active.
+- **Animation**: 0.25s Opacity/Scale.
 
-### explore.html (Explore & Book)
-- **Sections**: Navbar, Beyond the Retreat (Experiences), Heartfelt Stays (Reviews), House Rules, Your Escape Is Waiting (CTA), Footer.
-- **Image Fixes**:
-  - Experiences cards: 180px fixed height, mini-card layout on mobile (image left, text right).
-- **Reviews**: 18px quote font size on mobile, vertical scroll.
-- **Booking CTA**: Side-by-side buttons on mobile, 52px heading.
-- **SEO**: Title: "Explore & Book | Midtown Retreat"
+### 4. Image Consistency
+- Global CSS rule for `img { object-fit: cover; object-position: center 30%; }`.
+- Exceptions for `.gallery-item img` (center center) and `.about-collage img` (center top).
 
 ## Verification Plan
 
-### Automated Tests
-- None specified.
-
 ### Manual Verification
-- **Navigation**: Click every link in the navbar across all three pages to ensure correct redirection and anchor scrolling.
-- **Mobile Responsiveness**: Use browser dev tools (e.g., iPhone 12 Pro) to verify:
-  - Header font sizes (clamping).
-  - Amenities 2x4 grid.
-  - Mini-card layout for nearby experiences.
-  - Booking CTA buttons side-by-side.
-- **Lightbox**: Click gallery images and verify overlay, arrows, and close button.
-- **Page Transitions**: Verify fade transitions between pages.
+- **Mobile**: Check nav scroll and link visibility on small screens.
+- **Cards**: Verify room card height and image cropping on desktop/mobile.
+- **Lightbox**: Click one image of each type (Shared, Room, Gallery, Experience) on each page. Verify Next/Prev through all images.
+- **Transitions**: Check fade transitions between pages still work.

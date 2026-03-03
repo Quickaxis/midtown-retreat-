@@ -1,49 +1,45 @@
-# Walkthrough: Midtown Retreat Restructuring
+# Walkthrough: Midtown Retreat Restructuring & UI Refinements
 
-The Midtown Retreat website has been restructured from a single-page layout into three separate, optimized pages. This improves navigation, SEO, and the overall user experience while maintaining the premium design.
+The Midtown Retreat website has been restructured into three pages and refined with advanced UI/UX features for a premium experience.
 
 ## Changes Made
 
 ### 1. Multi-Page Restructure
-- **index.html**: Home page featuring the Hero, About, and Shared Spaces sections.
+- **index.html**: Home page featuring the Hero, About, and Shared Spaces.
 - **rooms.html**: Dedicated page for Rooms, Amenities, and the Photo Gallery.
-- **explore.html**: Dedicated page for Nearby Experiences, Reviews, House Rules, and Booking.
+- **explore.html**: Dedicated page for Nearby Experiences, Reviews, and Booking.
 
-### 2. UI & Image Improvements
-- **Consistent Aspect Ratios**: All room cards, shared spaces, and gallery images now force a **4:3 aspect ratio** with `object-fit: cover`.
-- **About Section**: Collage images now use a **3:4 aspect ratio** with rounded corners (20px).
-- **Shared Spaces**: Fixed height set to 260px (desktop) and 220px (mobile).
-- **Nearby Experiences**: Fixed height set to 180px.
+### 2. Mobile Navigation Overhaul
+- **Pill Navbar**: Replaced the hamburger menu with a horizontal scrolling pill on mobile.
+- **UX**: All links are directly accessible, centered, and scrollable on small screens.
+- **Styling**: 12px DM Sans font, transparent glass on hero sections, white glass on scroll.
 
-### 3. Gallery Lightbox
-- Implemented a custom, full-screen lightbox for the gallery in `rooms.html`.
-- Features smooth fade-in animations, navigation arrows, and a close button.
+### 3. Refined Room Cards (rooms.html)
+- **Dimensions**: Min-height 680px (desktop) for a more commanding presence.
+- **Images**: Fixed height (380px desktop / 280px mobile) with `object-position: center 30%` to better showcase interiors.
+- **Mobile**: Cards display full-width and stacked for better readability.
 
-### 4. Mobile Responsiveness
-- **Clamp Typography**: Headings now scale smoothly between mobile and desktop sizes.
-- **Amenities Grid**: Changed from a stacked list to a **2x4 grid** on mobile.
-- **Mini-Card Layout**: Nearby experiences now display as horizontal mini-cards on mobile (image left, text right).
-- **Booking CTA**: WhatsApp and Call buttons are now side-by-side on mobile.
+### 4. Global Unified Lightbox
+- **Feature**: Click ANY image sitewide to view it full-screen.
+- **UI**: 95vw/90vh contain-fit images with navigation arrows and a "✕" close button.
+- **UX**: Supports keyboard navigation (ESC to close, Arrows to navigate), locks body scroll when active, and features smooth scale/opacity animations.
 
-### 5. Navigation & Polish
-- **Smooth Transitions**: Added a 0.4s fade-in on page load and a 0.2s fade-out on link clicks.
-- **Back to Top**: A floating gold button appears after scrolling 300px.
-- **SEO & Meta**: Unique page titles and meta descriptions added to all pages.
-- **Footer Updates**: Added navigation links and updated contact information.
+### 5. Sitewide Image Consistency
+- **Global Positioning**: All images now use `object-fit: cover` and `object-position: center 30%`.
+- **Special Cases**: Gallery images are centered, and About collage images are top-aligned to preserve composition.
 
 ## Verification Results
 
-### Navigation
-- [x] Home -> Rooms (Success)
-- [x] Rooms -> Explore/Contact (Success)
-- [x] Anchor links across pages (Success)
+### Navigation & UX
+- [x] Horizontal scroll nav on mobile (Success)
+- [x] Fixed/Glass navbar transition (Success)
+- [x] Back to top button (Success)
 
-### Responsiveness
-- [x] 2x4 Amenities grid on mobile (Verified via CSS)
-- [x] Mini-card experience layout (Verified via CSS)
-- [x] Responsive headings (Verified via clamp logic)
+### Visuals
+- [x] Room card height and image cropping (Success)
+- [x] Global image positioning manually checked (Success)
 
-### Features
-- [x] Lightbox functionality (Logic implemented and verified)
-- [x] Back to top button (Logic implemented and verified)
-- [x] Page transitions (Logic implemented and verified)
+### Integrated Lightbox
+- [x] Works on room cards, shared spaces, gallery, and experiences (Success)
+- [x] Navigation arrows and keyboard shortcuts (Success)
+- [x] Body scroll lock (Success)

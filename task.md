@@ -1,28 +1,22 @@
 # Tasks
 
 - [x] Planning and Analysis
-    - [x] Analyze current `index.html`
-    - [x] Create implementation plan
-- [x] Restructuring Base Pages
-    - [x] Create `index.html` (Home)
-    - [x] Create `rooms.html` (Rooms & Amenities)
-    - [x] Create `explore.html` (Explore & Book)
-- [x] Applying Image Fixes & Gallery Lightbox
-    - [x] Force aspect ratios and object-fit on cards
-    - [x] Implement Lightbox for Gallery
-    - [x] Fix Shared Spaces card heights
-    - [x] Apply About section collage styling
-- [x] Mobile Improvements
-    - [x] Responsive heading sizes
-    - [x] 2x4 grid for Amenities
-    - [x] Mini-card layout for Nearby Experiences
-    - [x] Review card font sizing and layout
-    - [x] Booking CTA layout adjustment
-    - [x] Smooth page transitions
-- [x] Footer & Final Touches
-    - [x] Update footer with nav, Instagram, and phone
-    - [x] Add "Back to Top" button
-    - [x] Add page titles and meta descriptions
-- [x] Verification
-    - [x] Test navigation and mobile responsiveness
-    - [x] Verify image fixes and lightbox
+    - [x] Update implementation plan for new requirements
+- [/] Mobile Navigation Overhaul
+    - [/] Remove hamburger menu and mobile styles
+    - [ ] Implement horizontal scrolling nav links in pill
+    - [ ] Style pill (fixed, glass, specific layout)
+- [ ] Room Card Refinement
+    - [ ] Update heights and image positioning
+    - [ ] Adjust mobile layout (stacked, full width)
+- [ ] Unified Image Lightbox
+    - [ ] Implement common Lightbox HTML/CSS/JS
+    - [ ] Apply to all relevant images sitewide
+    - [ ] Add navigation, ESC key, and body scroll lock
+- [ ] Global Image Styling
+    - [/] Force `object-position: center 30%` for all images
+    - [ ] Add exceptions for Gallery and About collage
+- [ ] Final Verification & Push
+    - [ ] Test across all 3 pages
+    - [ ] Update walkthrough
+    - [x] Push to GitHub (initial sync complete)
